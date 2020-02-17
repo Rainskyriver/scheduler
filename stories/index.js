@@ -16,6 +16,7 @@ import Empty from "components/Appointment/Empty.js";
 import Show from "components/Appointment/Show.js";
 import Confirm from "components/Appointment/Confirm.js";
 import Status from "components/Appointment/Status.js";
+import Error from "components/Appointment/Error.js";
 
 //Dummy Information
 const days = [
@@ -154,3 +155,9 @@ storiesOf("Appointment", module)
     />
   })
   .add("Status", () => <Status message="Deleting"/>)
+  .add("Error", () => {
+    return <Error 
+    message="Could not Delete Appointment"
+    onClose={action("onClose")}
+    />
+  })
