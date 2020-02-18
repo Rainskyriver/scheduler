@@ -3,50 +3,29 @@ import axios from 'axios'
 
 import "components/Application.scss";
 
-// import Button from "components/Button";
-// import DayListItem from "components/DayListItem";
+import { getAppointmentsForDay } from "helpers/selectors";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment"
 
-//Dummy Data
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: 3,
-    time: "2pm"
-  },
-  {
-    id: 4,
-    time: "2pm"
-  },
-  {
-    id: 5,
-    time: "2pm"
-  }
-];
-
 export default function Application(props) {
-  const [day, setDay] = useState("Monday");
-  const [days, setDays] = useState([]);
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    appointments: {}
+  })
+
+  const appointments = getAppointmentsForDay(state, state.day);
+
+  const schedule = appointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+  })
+  
+  const setDay = day => setState({ ...state, day });
   useEffect(() => {
-    axios.get("/api/days").then(res => {
-      setDays(res.data)}
-      );
+    const promise1 = axios.get("/api/days");
+    const promise2 = axios.get("/api/appointments");
+    const promise3 = axios.get("/api/interviewers").then(res => console.log(res.data));
+    Promise.all([promise1, promise2]).then((all) => setState(prev => ({days: all[0].data, appointments: all[1].data})))
   }, [])
   return (
     <main className="layout">
@@ -59,8 +38,8 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-            days={days}
-            day={day}
+            days={state.days}
+            day={state.day}
             setDay={setDay}
           />
         </nav>
