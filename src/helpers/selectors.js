@@ -23,10 +23,25 @@ export function getInterview(state, interview) {
         interviewer: {
           avatar: state.interviewers[interviewer].avatar,
           id: state.interviewers[interviewer].id,
-          name: state.interviewers[interviewer].name,
+          name: state.interviewers[interviewer].name
         },
         student: interview.student
-      }
+      };
     }
   }
+}
+export function getInterviewersForDay(state, day) {
+  const returnArray = [];
+  for (const selDay in state.days) {
+    if (state.days[selDay].name === day) {
+      for (const interviewer in state.days[selDay].interviewers) {
+        returnArray.push(
+          state.interviewers[state.days[selDay].interviewers[interviewer]]
+        );
+      }
+      // console.log(returnArray)
+      return returnArray;
+    }
+  }
+  return returnArray;
 }

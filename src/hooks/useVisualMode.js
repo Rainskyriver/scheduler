@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function useVisualMode(inMode) {
   const [mode, setMode] = useState(inMode);
@@ -9,9 +9,8 @@ export default function useVisualMode(inMode) {
   };
   const back = () => {
     if (!(mode === inMode)) {
-      const lastIndex = history.slice(0, -1).length - 1;
       setHistory([...history.slice(0, -1)]);
-      setMode(history[lastIndex]);
+      setMode(history[history.slice(0, -1).length -1]);
     }
   };
   return {
