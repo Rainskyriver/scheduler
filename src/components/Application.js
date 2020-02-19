@@ -58,7 +58,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {appointments.map((appointment) => schedule)}
+        {appointments.map(() => schedule)}
       </section>
     </main>
   );
