@@ -34,6 +34,19 @@ export default function Application(props) {
       });
     });
   };
+  const cancelInterview = (id) => {
+    return axios.delete(`/api/appointments/${id}`).then(() => {
+      setState({
+        ...state,
+        [id]: {
+          interview: null
+        }
+      })
+    })
+  }
+  const confirmDelete = () => {
+    return null;
+  }
   const interviewers = getInterviewersForDay(state, state.day);
   const appointments = getAppointmentsForDay(state, state.day);
   const schedule = appointments.map(appointment => {
@@ -46,6 +59,8 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
+        confirmDelete={confirmDelete}
       />
     );
   });
