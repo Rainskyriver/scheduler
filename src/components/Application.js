@@ -44,9 +44,6 @@ export default function Application(props) {
       })
     })
   }
-  const confirmDelete = () => {
-    return null;
-  }
   const interviewers = getInterviewersForDay(state, state.day);
   const appointments = getAppointmentsForDay(state, state.day);
   const schedule = appointments.map(appointment => {
@@ -60,7 +57,6 @@ export default function Application(props) {
         interviewers={interviewers}
         bookInterview={bookInterview}
         cancelInterview={cancelInterview}
-        confirmDelete={confirmDelete}
       />
     );
   });
