@@ -10,7 +10,7 @@ import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
-import Appointment from "components/Appointment/index.js"
+import Appointment from "components/Appointment/index.js";
 import Header from "components/Appointment/Header.js";
 import Empty from "components/Appointment/Empty.js";
 import Show from "components/Appointment/Show.js";
@@ -24,18 +24,18 @@ const days = [
   {
     id: 1,
     name: "Monday",
-    spots: 2,
+    spots: 2
   },
   {
     id: 2,
     name: "Tuesday",
-    spots: 5,
+    spots: 5
   },
   {
     id: 3,
     name: "Wednesday",
-    spots: 0,
-  },
+    spots: 0
+  }
 ];
 const interviewer = {
   id: 1,
@@ -79,7 +79,7 @@ storiesOf("DayListItem", module)
 
 storiesOf("DayList", module)
   .addParameters({
-    backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
+    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
   })
   .add("Monday", () => (
     <DayList days={days} day={"Monday"} setDay={action("setDay")} />
@@ -143,45 +143,50 @@ storiesOf("Appointment", module)
   .add("Header", () => <Header time="12pm" />)
   .add("Empty", () => <Empty onAdd={action("onAdd")} />)
   .add("Show", () => {
-    return <Show
-      onEdit={action("onEdit")} 
-      onDelete={action("onDelete")}
-      />
+    return <Show onEdit={action("onEdit")} onDelete={action("onDelete")} />;
   })
   .add("Confirm", () => {
-    return <Confirm
-      message="Delete the appointment?"
-      onConfirm={action("onConfirm")}
-      onCancel={action("onCancel")}
-    />
+    return (
+      <Confirm
+        message="Delete the appointment?"
+        onConfirm={action("onConfirm")}
+        onCancel={action("onCancel")}
+      />
+    );
   })
-  .add("Status", () => <Status message="Deleting"/>)
+  .add("Status", () => <Status message="Deleting" />)
   .add("Error", () => {
-    return <Error 
-    message="Could not Delete Appointment"
-    onClose={action("onClose")}
-    />
+    return (
+      <Error
+        message="Could not Delete Appointment"
+        onClose={action("onClose")}
+      />
+    );
   })
   .add("Form - Edit", () => {
-    return <Form
-      name="Lian"
-      interviewers={interviewers}
-      interviewer={3}
-      onSave={action("onSave")}
-      onCancel={action("onCancel")}
-    />
+    return (
+      <Form
+        name="Lian"
+        interviewers={interviewers}
+        interviewer={3}
+        onSave={action("onSave")}
+        onCancel={action("onCancel")}
+      />
+    );
   })
   .add("Form - Create", () => {
-    return <Form
-      interviewers={interviewers}
-      onSave={action("onSave")}
-      onCancel={action("onCancel")}
-    />
+    return (
+      <Form
+        interviewers={interviewers}
+        onSave={action("onSave")}
+        onCancel={action("onCancel")}
+      />
+    );
   })
   .add("Appointment Empty", () => (
     <Fragment>
-      <Appointment id={1} time="12pm"/>
-      <Appointment id="last" time="1pm"/>
+      <Appointment id={1} time="12pm" />
+      <Appointment id="last" time="1pm" />
     </Fragment>
   ))
   .add("Appointment Booked", () => (
@@ -193,4 +198,4 @@ storiesOf("Appointment", module)
       />
       <Appointment id="last" time="1pm" />
     </Fragment>
-  ))
+  ));

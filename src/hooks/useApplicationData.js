@@ -5,18 +5,18 @@ export default function useApplicationData() {
   const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
   const SET_INTERVIEW = "SET_INTERVIEW";
   function reducer(state, action) {
-    console.log(state, action);
     switch (action.type) {
       case SET_DAY:
-        return {...state, day: action.value};
+        return { ...state, day: action.value };
       case SET_APPLICATION_DATA:
-        return {...state,
+        return {
+          ...state,
           days: action.value[0].data,
           appointments: action.value[1].data,
           interviewers: action.value[2].data
         };
       case SET_INTERVIEW:
-        return (action.value);
+        return action.value;
       default:
         throw new Error(`Tried to reduce with ${action.type}: UNSUPPORTED`);
     }
@@ -35,8 +35,9 @@ export default function useApplicationData() {
       dispatch({
         type: SET_APPLICATION_DATA,
         value: all
-      })});
-  }, []);
+      });
+    });
+  }, [state.days]);
   return {
     state,
     setDay: day => dispatch({ type: SET_DAY, value: day }),

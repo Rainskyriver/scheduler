@@ -9,7 +9,7 @@ import {
 } from "helpers/selectors";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
-import useApplicationData from "hooks/useApplicationData"
+import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
   const {

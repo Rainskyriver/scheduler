@@ -39,7 +39,6 @@ export function getInterviewersForDay(state, day) {
           state.interviewers[state.days[selDay].interviewers[interviewer]]
         );
       }
-      // console.log(returnArray)
       return returnArray;
     }
   }
