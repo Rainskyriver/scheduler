@@ -19,7 +19,6 @@ export default function Form(props) {
     setErrorName("");
     props.onSave(name, interviewer);
   };
-  const validateInterviewer = () => {};
   const reset = () => {
     setName("");
     setInterviewer(null);
