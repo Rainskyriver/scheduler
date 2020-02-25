@@ -28,15 +28,11 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    console.log("Savingxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     transition(SAVING);
     props
       .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
-      .catch(() => {
-        transition(ERROR_SAVE, true)
-        console.log("ERRORsadfsogijaeozrgjaioshjistgaorhjairth")}
-        );
+      .catch(() => {transition(ERROR_SAVE, true)});
   };
   const deleteInterview = () => {
     transition(DELETING);
