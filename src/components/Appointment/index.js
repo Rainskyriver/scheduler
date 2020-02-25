@@ -28,11 +28,15 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
+    console.log("Savingxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     transition(SAVING);
     props
       .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
-      .catch(() => transition(ERROR_SAVE, true));
+      .catch(() => {
+        transition(ERROR_SAVE, true)
+        console.log("ERRORsadfsogijaeozrgjaioshjistgaorhjairth")}
+        );
   };
   const deleteInterview = () => {
     transition(DELETING);
@@ -45,7 +49,7 @@ export default function Appointment(props) {
     transition(CONFIRM);
   };
   return (
-    <div>
+    <article data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SAVING && <Status message="Saving" />}
@@ -83,6 +87,6 @@ export default function Appointment(props) {
           onSave={save}
         />
       )}
-    </div>
+    </article>
   );
 }

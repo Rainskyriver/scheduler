@@ -55,9 +55,6 @@ export default function useApplicationData() {
         .then(() => {
           dispatch({ type: SET_INTERVIEW, value: { ...state, appointments } });
         })
-        .catch(e => {
-          throw Error(e);
-        });
     },
     cancelInterview: id => {
       return axios.delete(`/api/appointments/${id}`).then(() => {

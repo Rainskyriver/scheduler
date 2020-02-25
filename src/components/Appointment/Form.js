@@ -8,11 +8,12 @@ export default function Form(props) {
   const [error, setError] = useState("");
   const validate = () => {
     if (name === "") {
-      setError("Student name cannot be blank")
+      setError("Student name cannot be blank");
       return;
     }
+    setError("");
     props.onSave(name, interviewer);
-  }
+  };
   const reset = () => {
     setName("");
     setInterviewer(null);
@@ -31,7 +32,7 @@ export default function Form(props) {
             type="text"
             placeholder="Enter Student Name"
             value={name}
-            onChange={event => setName(event.target.value)}
+            onChange={event => {setName(event.target.value)}}
             data-testid="student-name-input"
           />
           <section className="appointment__validation">{error}</section>
