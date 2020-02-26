@@ -4,11 +4,9 @@ import {
   reducer,
   SET_DAY,
   SET_APPLICATION_DATA,
-  SET_INTERVIEW,
-  SET_SPOTS
+  SET_INTERVIEW
 } from "reducers/application";
 export default function useApplicationData() {
-
   const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
     days: [],
@@ -25,7 +23,7 @@ export default function useApplicationData() {
         value: all
       });
     });
-  }, [state.appointments]);
+  }, [state.days]);
   return {
     state,
     setDay: day => dispatch({ type: SET_DAY, value: day }),
@@ -38,11 +36,9 @@ export default function useApplicationData() {
         ...state.appointments,
         [id]: appointment
       };
-      return axios
-        .put(`/api/appointments/${id}`, appointment)
-        .then(() => {
-          dispatch({ type: SET_INTERVIEW, value: { ...state, appointments } });
-        })
+      return axios.put(`/api/appointments/${id}`, appointment).then(() => {
+        dispatch({ type: SET_INTERVIEW, value: { ...state, appointments } });
+      });
     },
     cancelInterview: id => {
       return axios.delete(`/api/appointments/${id}`).then(() => {

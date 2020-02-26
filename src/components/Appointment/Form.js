@@ -42,7 +42,10 @@ export default function Form(props) {
             }}
             data-testid="student-name-input"
           />
-          <section className="appointment__validation">{errorName}{errorInt}</section>
+          <section className="appointment__validation">
+            {errorName}
+            {errorInt}
+          </section>
         </form>
         <InterviewerList
           interviewers={props.interviewers}
