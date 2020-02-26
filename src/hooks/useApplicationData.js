@@ -4,7 +4,8 @@ import {
   reducer,
   SET_DAY,
   SET_APPLICATION_DATA,
-  SET_INTERVIEW
+  SET_INTERVIEW,
+  SET_SPOTS
 } from "reducers/application";
 export default function useApplicationData() {
 
@@ -24,7 +25,7 @@ export default function useApplicationData() {
         value: all
       });
     });
-  }, [state.days]);
+  }, [state.appointments]);
   return {
     state,
     setDay: day => dispatch({ type: SET_DAY, value: day }),
